@@ -1,9 +1,9 @@
 import java.util.ArrayList;
 public class NoNullArrayList<T> extends ArrayList<T>{
-  public NullArrayList(){
+  public NoNullArrayList(){
     super();
   }
-  public NullArrayList(int startingCapacity){
+  public NoNullArrayList(int startingCapacity){
     super(startingCapacity);
   }
   public void set(int index, T element){

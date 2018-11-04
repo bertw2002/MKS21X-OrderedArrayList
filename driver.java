@@ -1,6 +1,5 @@
 public class driver {
 	public static void main(String[] args) {
-
 		int c = 0;
 
 		NoNullArrayList<String> array = new NoNullArrayList<>();
@@ -15,7 +14,6 @@ public class driver {
 		} catch (Exception e) {
 			System.out.println(++c+". You are producing a "+e.getClass().getCanonicalName()+" when adding/setting to a NoNullArrayList.");
 		}
-
 		try {
 			try {
 				array.add(null);
@@ -54,6 +52,7 @@ public class driver {
 			array.set(2,"r");
 			array.set(1,"p");
 			array.set(0,"q");
+      System.out.println("" +array);
 			if (!(""+array).equals("[p, q, r, x, y, z]")) {
 				System.out.print(++c+". You aren't adding properly when OrderedArrayList.set(index, T) is called. ");
 				if (array.size() > 6) System.out.println("You aren't removing elements properly!");

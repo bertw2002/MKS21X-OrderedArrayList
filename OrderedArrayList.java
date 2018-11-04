@@ -10,7 +10,7 @@ public class OrderedArrayList<T extends Comparable<T>> extends NoNullArrayList<T
       return super.size();//last element
     }
     for (int x = 0;x < super.size() - 1; x++){
-      if (element.compareTo(super.get(x)) == 1 && element.compareTo(super.get(x + 1)) == -1){
+      if (element.compareTo(super.get(x)) >= 1 && element.compareTo(super.get(x + 1)) == -1){
         return x + 1;
       }
     }
@@ -32,10 +32,29 @@ public class OrderedArrayList<T extends Comparable<T>> extends NoNullArrayList<T
     super.add(whatindex(element), element);
   }
 
-  public T sorted(){
-    OrderedArrayList<T> newarr = new OrderedArrayList<T>(super.size());
+  public void sorted(int index, T element){
+    super.remove(index);
+    if (element.compareTo(super.get(0)) == -1){
+      super.add(0, element);
+    }
+    if (element.compareTo(super.get(super.size() - 1)) == 1){
+      super.add(element);
+    }
+    for (int x = 0; x < super.size() - 1; x++){
+      if (element.compareTo(super.get(x)) >= 0 && element.compareTo(super.get(x + 1)) <= 0){
+        super.add(x + 1, element);
+        break;
+      }
+    }
+
   }
   public T set(int index, T element){
-    super(set(index, element));
+    OrderedArrayList<T> newarr = new OrderedArrayList<T>(super.size());
+    for (int x = 0; x < super.size();x++){
+      newarr.set(x, super.get(x));
+    }
+    super.set(index, element);
+    sorted(index, element);
+    return newarr.set(index,element);
   }
 }
